@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Motion Plus splitText with ES Modules</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #222;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h1 {
+    font-size: 3rem;
+    max-width: 700px;
+    text-align: center;
+  }
+  .split-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    /* Reduced spacing here */
+    margin-right: 0.1em; /* smaller margin */
+    will-change: transform, opacity;
+  }
+</style>
+</head>
+<body>
+
+<h1 id="text">Level up your animations with motion-plus</h1>
+
+<script type="module">
+  import { splitText } from "https://cdn.skypack.dev/motion-plus";
+  import { animate, stagger } from "https://cdn.skypack.dev/@motionone/dom";
+
+  const el = document.getElementById("text");
+
+  const { words } = splitText(el);
+
+  animate(
+    words,
+    { opacity: [0, 1], y: [30, 0] },
+    {
+      duration: 0.8,
+      delay: stagger(0.1),
+      easing: "ease-out",
+    }
+  );
+</script>
+
+</body>
+</html>

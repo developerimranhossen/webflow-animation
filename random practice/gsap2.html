@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GSAP SplitText Demo</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .char {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="headline">Smooth SplitText Animation</h1>
+
+  <!-- GSAP Core -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- SplitText CodePen-only plugin -->
+  <script src="https://assets.codepen.io/16327/SplitText3.min.js"></script>
+
+  <script>
+    const split = new SplitText(".headline", { type: "words" });
+
+    gsap.from(split.words, {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      stagger: 0.05,
+      snap: "y"
+    });
+  </script>
+
+</body>
+</html>
