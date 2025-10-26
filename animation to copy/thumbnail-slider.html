@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Swiper Slider with Static Thumbnails</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --bg: transparent;
+      --accent: #fff;
+      --thumb-gap: 10px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--accent);
+      font-family: system-ui, Segoe UI, Roboto;
+    }
+
+    .slider {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+      border-radius: 6px;
+    }
+
+    .stage .swiper-slide img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 0;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-btn.left {
+      left: 18px;
+    }
+
+    .nav-btn.right {
+      right: 18px;
+    }
+
+    .nav-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .indicator {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      padding: 6px 12px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      font-weight: 600;
+      z-index: 20;
+    }
+
+    /* Thumbnails */
+    .thumbs-container {
+      display: flex;
+      justify-content: center; /* center the row */
+      overflow-x: auto;        /* allow scrolling if too wide */
+      padding: 10px 0;
+      gap: 10px;
+    }
+
+    .swiper.thumbs {
+      
+    }
+
+    .thumbs .swiper-wrapper {
+      display: flex !important;
+      transform: none !important; /* disable inline translate3d */
+    }
+
+    .thumbs .swiper-slide {
+      flex-shrink: 0;
+      width: 100px;
+      height: 70px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      opacity: 0.55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
+    }
+
+    .thumbs .swiper-slide-thumb-active {
+      opacity: 1;
+      border-color: #fff;
+      transform: scale(1.05); /* highlight active thumbnail */
+    }
+
+    .thumbs .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none; /* prevent accidental drag on image */
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .stage .swiper-slide img {
+        height: 360px;
+      }
+
+      .thumbs .swiper-slide {
+        height: 56px;
+        width: 80px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stage .swiper-slide img {
+        height: 240px;
+      }
+
+      .nav-btn {
+        width: 44px;
+        height: 44px;
+      }
+
+      .thumbs .swiper-slide {
+        height: 48px;
+        width: 64px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="stage">
+      <!-- Main Swiper -->
+      <div class="swiper mySwiperMain">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <button class="nav-btn left" id="prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <button class="nav-btn right" id="next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      </button>
+
+      <div class="indicator" id="indicator">1/3</div>
+    </div>
+
+    <!-- Thumbnails Swiper -->
+    <div class="thumbs-container">
+      <div class="swiper thumbs mySwiperThumbs">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=400&auto=format&fit=crop" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=400&auto=format&fit=crop" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=400&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <script>
+    // Initialize Thumbnails (no transform)
+    const thumbs = new Swiper('.mySwiperThumbs', {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+      centeredSlides: false,   // disable auto transform
+      watchSlidesProgress: true,
+      loop: false,
+      grabCursor: true
+    });
+
+    // Main Swiper
+    const main = new Swiper('.mySwiperMain', {
+      loop: true,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '#next',
+        prevEl: '#prev'
+      },
+      thumbs: {
+        swiper: thumbs
+      },
+      on: {
+        init: function () {
+          updateIndicator(this);
+        },
+        slideChange: function () {
+          updateIndicator(this);
+        }
+      }
+    });
+
+    function updateIndicator(swiper) {
+      const total = swiper.slides.length - (swiper.params.loop ? swiper.loopedSlides * 2 : 0);
+      let realIndex = swiper.realIndex !== undefined ? swiper.realIndex : swiper.activeIndex;
+      document.getElementById('indicator').textContent = (realIndex + 1) + '/' + total;
+    }
+  </script>
+</body>
+
+</html>
