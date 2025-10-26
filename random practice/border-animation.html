@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>border animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        a {
+            /* display: block; */
+            position: relative;
+            padding: 2rem;
+            background: gray;
+            text-align: center;
+            border-radius: 10px;
+            height: 300px;
+            width: 300px;
+        }
+
+        @property --imran {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+
+        }
+
+        @property --borna {
+            syntax: "<angle>";
+            initial-value: 180deg;
+            inherits: false;
+
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            padding: 3px;
+            border-radius: 10px;
+            background-image: conic-gradient(from var(--imran), transparent 50%, blue);
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 3s linear infinite;
+        }
+
+        a::before {
+            /* filter: blur(50px); */
+            /* opacity: .5; */
+            content: '';
+            position: absolute;
+            z-index: -1;
+            padding: 3px;
+            border-radius: 10px;
+            background-image: conic-gradient(from var(--borna), transparent 50%, rgb(255, 0, 191));
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin2 3s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+
+            to {
+                --imran: 360deg;
+            }
+        }
+
+        @keyframes spin2 {
+
+
+            to {
+                --borna: 540deg;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="">Learn more</a>
+</body>
+
+</html>

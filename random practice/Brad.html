@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Section</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+  .speaking-section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
+  .speaking-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 2rem; }
+  
+  .speaking-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .photos { display: flex; flex-direction: column; gap: 1rem; }
+  .photos img { width: 300px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+  .message {
+    max-width: 500px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .message h3 { margin-top: 0; color: #333; }
+  .message p { line-height: 1.6; color: #555; }
+  .message blockquote { margin: 1rem 0 0; font-style: italic; color: #222; }
+
+  .speaker-reels {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .speaker-reels iframe {
+    width: 300px;
+    height: 170px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .speaking-content { flex-direction: column; align-items: center; }
+    .photos img { width: 80%; max-width: 350px; }
+    .message { max-width: 90%; }
+    .speaker-reels iframe { width: 90%; height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="speaking-section">
+  <h2>Walk in Confidence and Freedom</h2>
+
+  <div class="speaking-content">
+    <div class="photos">
+      <img src="photo1.jpg" alt="Brad speaking">
+      <img src="photo2.jpg" alt="Brad speaking">
+    </div>
+
+    <div class="message">
+      <h3>Evangelistic Message</h3>
+      <p>Brad’s signature talk helps men step into true confidence and freedom. He challenges them to lay down the junk that’s holding them back, discover their identity in Christ, and live with boldness and humility. Drawing from his NFL experience and personal story, Brad connects with students, athletes, and men at all stages of life.</p>
+      <blockquote>“Let us also lay aside every weight, and sin which clings so closely, and let us run with endurance the race that is set before us, looking to Jesus, the founder and perfecter of our faith…” — Hebrews 12:1–2</blockquote>
+    </div>
+  </div>
+
+  <div class="speaker-reels">
+    <iframe src="https://www.youtube.com/embed/reel1" title="Speaker Reel 1"></iframe>
+    <iframe src="https://www.youtube.com/embed/reel2" title="Speaker Reel 2"></iframe>
+    <iframe src="https://www.youtube.com/embed/reel3" title="Speaker Reel 3"></iframe>
+  </div>
+</section>
+
+</body>
+</html>

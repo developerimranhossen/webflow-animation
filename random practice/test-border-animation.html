@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conic Gradient Animation</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #0e0e10;
+    }
+    @property --angl {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    .spinner {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: conic-gradient(from var(--angl), #5940d3, #ff005e, #00ffff, #5940d3);
+      animation: spin 3s linear infinite;
+      box-shadow: 0 0 30px rgba(89, 64, 211, 0.6);
+    }
+
+    @keyframes spin {
+    from {
+        --angl: 0deg;
+    }
+      to {
+        --angl: 360deg;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Section</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("/src/assets/hero-nfl-action.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          hsl(0 0% 9% / 0.9) 0%,
+          hsl(0 0% 9% / 0.7) 50%,
+          hsl(0 84% 60% / 0.5) 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        text-align: center;
+        color: white;
+      }
+
+      .hero-text {
+        max-width: 80rem;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s ease-out 0.2s forwards;
+      }
+
+      .hero-headline {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        text-balance: pretty;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #ef4444 50%,
+          #ffffff 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+      }
+
+      .hero-subtext {
+        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 3rem;
+        max-width: 48rem;
+        margin-left: auto;
+        margin-right: auto;
+        text-balance: pretty;
+      }
+
+      .cta-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 64rem;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 768px) {
+        .cta-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .cta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .btn-hero {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          hsl(0 84% 60%) 0%,
+          hsl(0 72% 51%) 100%
+        );
+        color: white;
+        box-shadow: 0 10px 30px -10px hsla(0, 84%, 60%, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px -10px hsla(0, 84%, 60%, 0.6);
+      }
+
+      .btn-outline {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .cta-description {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.4;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-mouse {
+        width: 1.5rem;
+        height: 2.5rem;
+        border: 2px solid white;
+        border-radius: 1.25rem;
+        opacity: 0.75;
+        position: relative;
+      }
+
+      .scroll-dot {
+        width: 0.25rem;
+        height: 0.75rem;
+        background: white;
+        border-radius: 0.125rem;
+        margin: 0.5rem auto 0;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        53%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40%,
+        43% {
+          transform: translateX(-50%) translateY(-15px);
+        }
+        70% {
+          transform: translateX(-50%) translateY(-7px);
+        }
+        90% {
+          transform: translateX(-50%) translateY(-2px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero-section">
+      <!-- Background Image with Overlay -->
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-headline">
+            Walk in confidence.
+            <br />
+            Live in freedom.
+          </h1>
+
+          <p class="hero-subtext">
+            From the NFL to true freedom in Christ — helping men reset their
+            lives and walk boldly.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="cta-grid">
+            <div class="cta-item">
+              <button class="btn-hero btn-primary">Book Brad to Speak</button>
+              <p class="cta-description">
+                Bring Brad to your school, church, or men's event
+              </p>
+            </div>
+
+            <div class="cta-item">
+              <button class="btn-hero btn-primary">
+                Join Rise Up Experience
+              </button>
+              <p class="cta-description">
+                A 2-day reset to encounter God and walk in freedom
+              </p>
+            </div>
+
+            <div class="cta-item">
+              <button class="btn-hero btn-outline">Join Skool Community</button>
+              <p class="cta-description">
+                Access resources, brotherhood, and discipleship groups
+              </p>
+            </div>
+
+            <div class="cta-item">
+              <button class="btn-hero btn-outline">Partner With Us</button>
+              <p class="cta-description">
+                Fuel the mission to reach and disciple men
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <div class="scroll-mouse">
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
