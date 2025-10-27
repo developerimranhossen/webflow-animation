@@ -12,15 +12,14 @@
 
         }
 
-        a {
+        .glow-btn {
             /* display: block; */
             position: relative;
             padding: 2rem;
             background: gray;
             text-align: center;
             border-radius: 10px;
-            height: 300px;
-            width: 300px;
+            
         }
 
         @property --imran {
@@ -37,7 +36,7 @@
 
         }
 
-        a::after {
+        .glow-btn::after {
             content: '';
             position: absolute;
             z-index: -1;
@@ -52,7 +51,7 @@
             animation: spin 3s linear infinite;
         }
 
-        a::before {
+        .glow-btn::before {
             /* filter: blur(50px); */
             /* opacity: .5; */
             content: '';
@@ -69,6 +68,9 @@
             animation: spin2 3s linear infinite;
         }
 
+        .glow-btn:hover::after, .glow-btn:hover::before {
+            animation-play-state: paused;
+        }
 
         @keyframes spin {
 
@@ -89,7 +91,7 @@
 </head>
 
 <body>
-    <a href="">Learn more</a>
+    <a class="glow-btn" href="">Learn more</a>
 </body>
 
 </html>

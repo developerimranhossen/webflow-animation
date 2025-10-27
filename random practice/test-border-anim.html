@@ -12,7 +12,7 @@
 
         }
 
-        .glow-btn {
+        a {
             /* display: block; */
             position: relative;
             padding: 2rem;
@@ -36,7 +36,7 @@
 
         }
 
-        .glow-btn::after {
+        a::after {
             content: '';
             position: absolute;
             z-index: -1;
@@ -49,9 +49,10 @@
             left: 50%;
             transform: translate(-50%, -50%);
             animation: spin 3s linear infinite;
+            transition: opacity 0.5s ease;
         }
 
-        .glow-btn::before {
+        a::before {
             /* filter: blur(50px); */
             /* opacity: .5; */
             content: '';
@@ -66,10 +67,20 @@
             left: 50%;
             transform: translate(-50%, -50%);
             animation: spin2 3s linear infinite;
+            transition: opacity 0.5s ease;
         }
 
-        .glow-btn:hover::after, .glow-btn:hover::before {
+        a:hover::after, a:hover::before {
+            opacity: 0;
+            transition-delay: 0.2s;
             animation-play-state: paused;
+        }
+        a:not(:hover)::after, 
+        a:not(:hover)::before {
+            opacity: 1;
+            /* Fade-in starts immediately (no delay) */
+            transition-delay: 0s; 
+            animation-play-state: running;
         }
 
         @keyframes spin {
@@ -91,7 +102,7 @@
 </head>
 
 <body>
-    <a class="glow-btn" href="">Learn more</a>
+    <a href="">Learn more</a>
 </body>
 
 </html>
