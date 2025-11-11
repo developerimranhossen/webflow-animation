@@ -1,0 +1,145 @@
+:root {
+    --crl-primary-400: hsl(158, 36%, 37%);
+    --crl-secondary-200: hsl(30, 38%, 92%);
+
+    --crl-neutral-900: hsl(212, 21%, 14%);
+    --crl-neutral-400: hsl(228, 12%, 48%);
+    --crl-neutral-100: hsl(0, 0%, 100%);
+
+    --ff-base: 'Fraunces', serif;
+    --ff-accent: 'Montserrat', sans-serif;
+
+    --fw-regular: 500;
+    --fw-bold: 700;
+}
+
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.7;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+body {
+    font-family: var(--ff-base);
+    font-weight: var(--fw-regular);
+    font-size: .875rem;
+    color: var(--crl-neutral-400);
+    background-color: var(--crl-secondary-200);
+    margin: 1rem;
+
+    display: grid;
+    min-height: 100vh;
+    place-content: center;
+}
+
+/* utilities */
+
+.flex-group {
+    display: flex;;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* product style */
+
+.product {
+    --content-padding: 1.5rem;
+    --content-spacing: .5rem;
+
+    display: grid;
+    background-color: var(--crl-neutral-100);
+    border-radius: .5rem;
+    overflow: hidden;
+    max-width: 600px;
+}
+@media (min-width: 600px) {
+    .product {
+        --content-padding: 2rem;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.product__content {
+    padding: var(--content-padding);
+    display: grid;
+    gap: var(--content-spacing);
+}
+.product__category {
+    font-size: .8125rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.product__title {
+    font-family: var(--ff-accent);
+
+    font-size: 2rem;
+    color: var(--crl-neutral-900);
+}
+
+.product__price {
+    font-size: 2rem;;
+    font-family: var(--ff-accent);
+    color: var(--crl-primary-400);
+}
+
+.button {
+    border: none;
+    padding: .7 5em 1.5em;
+}

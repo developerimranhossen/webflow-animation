@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --gradient: linear-gradient(90deg, #ee6352, rgba(128, 0, 128, 0.856), #ee6352);
+
+        }
+
+        body {
+            background-image: var(--gradient);
+            background-size: 300%;
+            animation: move 20s linear infinite alternate;
+        }
+
+        @keyframes move {
+            0% {
+                background-position: left;
+            }
+
+            
+
+            100% {
+                background-position: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
